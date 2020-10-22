@@ -1,2 +1,8 @@
 This folder contains Web APP module
-
+How To run the web
+In the Web App directory open the windows command prompt and run venv\Scripts\activate to activate the virtual environment
+Everytime your doing anything on the web, make sure the virtual environment is activated
+To install all dependencies do pip install -r requirements.txt (If it's your first time running the web)
+Navigate to SEEMLOS_Web by simply typing cd SEEMLOS_Web
+Run the command python manage.py runserver to start the web
+To leave virtual environment just type deactivate.
