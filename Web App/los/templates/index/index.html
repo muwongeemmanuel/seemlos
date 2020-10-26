@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The Muchwezi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href={% static 'css/bootstrap.min.css' %} />
+    <link rel='stylesheet' href={% static 'css/all.min.css' %} />
+    <link rel='stylesheet' href={% static 'css/styler.css' %} />
+    <meta name='The Muchwezi, Uganda Folklore, African Folklore, African mythology, East African mythology'></meta>
+
+</head>
+<body>
+    
+    <h1 class="text-center">Labour Optimization System</h1>
+    <h4 title="Labour Optimization System" class="text-center">L.O.S</h4>
+    <hr width=220>
+    {% if alert %}
+    <div class="alert container alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>{{alert}}</strong> 
+    </div>
+    
+    <script>
+      $(".alert").alert();
+    </script>
+    {% endif %}
+    <br>
+<div align=center>
+    <form method="POST" class="login_form bg-green text-light">
+        {% csrf_token%}
+        <label for="uname">Username</label>
+        <input class="form-control" id="uname" type="text" name="uname"><br>
+        <label for="password">Password</label>
+        <input class="form-control" id="password" type="password" name="password"><br>
+        <button class='btn text-light navy-blue-bg btn-block'> Sign In </button>
+    </form>
+</div>
+
+
+    <script type='text/javascript' src= {% static 'js/fontawesome/all.min.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/jquery-3.5.1.min.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/popper/popper.min.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/glm-ajax.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/bootstrap.min.js' %}></script>
+    
+</body>
+</html>
