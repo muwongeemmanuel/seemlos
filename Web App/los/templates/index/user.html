@@ -1,0 +1,27 @@
+{% extends "base/base1.html" %}
+{%load static %}
+{% block mainbar %}
+<br>
+<header class='text-center'>User Details</header>
+<br>
+<div align=center>
+    <div class="card login_form">
+        <div class="card-body">
+            <h5 class="card-title">Your Login Details</h5>
+            <p class="card-text lead">{{request.user|title}}</p>
+            <br>
+            <p class="text-brown">Your Fullname:</p>
+            <p class="card-text lead">{{request.user.first_name|title}} {{request.user.last_name|title}} </p>
+            <br>
+            <p class="text-brown">Your Registration Email:</p>
+            <p>{{request.user.email}}</p>
+            <br>
+            <p class="text-brown">Date Joined:</p>
+            <p>{{request.user.date_joined}}</p>
+            <a class="btn btn-dark btn-block" href="{% url 'logout'%}">Sign Out</a>
+        </div>
+        <p class="card-footer w-100">Your password is hashed for security purposes</p>
+    </div>
+</div>
+
+{% endblock mainbar %}

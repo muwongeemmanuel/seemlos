@@ -1,0 +1,53 @@
+{% extends "base/base1.html" %}
+{% load static %}
+
+{% block mainbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand"> <i class="fas fa-calculator    "></i>  Analysis</a>
+    <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="my-nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'analysis:analysis' %}">Graphical Analysis</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'analysis:line' %}" tabindex="-1" aria-disabled="true">Line Graph</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Numerical Analysis<span class="sr-only">(current)</span> </a>
+            </li>
+            
+        </ul>
+    </div>
+</nav>
+
+<!-- The line graph for labour optimizarion -->
+<br>
+<header class='text-center'>Numerical Analysis</header>
+<br>
+<table class="login_form bg-green padding text-light" cellpadding=20 cellspacing=5 align=center>
+    <thead>
+        <tr>
+            <th class=''>Day</th>
+            <th>Option 1</th>
+            <th>Option 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="th-border"><i>Day 1</i></td>
+            <td class="th-border"> Value 1</td>
+            <td class="th-border">Value 2</td>
+        </tr>
+        <tr>
+            <td class="th-border"><i>Day 2</i></td>
+            <td class="th-border">Value 1</td>
+            <td class="th-border">Value 2</td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock mainbar%}
