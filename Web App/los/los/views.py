@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 
 
@@ -31,8 +31,11 @@ def register(request):
         email = request.POST.get('email')
         position = request.POST.get('position')
         password = request.POST.get('password')
-        user = User.objects.create_user(uname, email, password)
-
+        g = Group.objects.get(name=position)
+        user = User.objects.create_user(username, email, password)
+        g.user_set.add(user)
+        login(request, username)
+        return HttpResponseRedirect('/')
     context={}
     return render(request, "index/register.html", context)
 
