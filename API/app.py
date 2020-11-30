@@ -28,28 +28,6 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def index():
-    # return '<h1>SEEM LOS API</h1>'
-    return render_template("index.html")
-
-@app.route('/model', methods=['GET'])
-def model():
-    return {
-        'Author' : 'Emmanuel',
-        'Team' : 'BSE20-25'
-    }
-
-@app.route('/forecast', methods=['POST'])
-def forecast():
-    return {
-        'Author' : 'Emmanuel',
-        'Team' : 'BSE20-25'
-    }
-
-
-@app.route('/dailyforecast', methods=['POST'])
-def dailyforecast():
     # model = pickle.load(open("../Model/encounter_model_LSTM.pkl", "rb"))
     # model = joblib.load('../Model/encounter_model_LSTM.pkl')
     model = load_model('../Model/encounter_model_LSTM.h5')
@@ -84,6 +62,29 @@ def dailyforecast():
     # prediction = dic = dict(enumerate(pred_price.flatten(), 1))
     # convert numpy array to json
     prediction = pred_price. tolist()
+
+@app.route('/', methods=['GET'])
+def index():
+    # return '<h1>SEEM LOS API</h1>'
+    return render_template("index.html")
+
+@app.route('/model', methods=['GET'])
+def model():
+    return {
+        'Author' : 'Emmanuel',
+        'Team' : 'BSE20-25'
+    }
+
+@app.route('/forecast', methods=['POST'])
+def forecast():
+    return {
+        'Author' : 'Emmanuel',
+        'Team' : 'BSE20-25'
+    }
+
+
+@app.route('/dailyforecast', methods=['POST'])
+def dailyforecast():
     prediction = json.dumps(prediction)
     return prediction
 
