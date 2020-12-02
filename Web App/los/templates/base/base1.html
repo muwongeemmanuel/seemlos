@@ -38,8 +38,9 @@
     </nav>
 
     <!-- Making the sidepanel -->
-    <div class="row">
-        <section class="sidebar col bg-green padding h-100 padding">
+    <div class="row container">
+
+        <section class="sidebar col bg-green padding h-100 rounded" style="margin:10px;">
             <a class="btn padding text-light" href="{% url 'user-details' %}">User Details</a><br>
             {% if request.user.is_superuser %}
             <a class="btn padding text-light" href="{% url 'register' %}">Create Account</a><br>
