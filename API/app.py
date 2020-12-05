@@ -134,6 +134,88 @@ def multidailyforecast():
     # prediction = json.dumps(pred)
     return prediction
 
+@app.route('/weeklyforecast', methods=['POST'])
+def weeklyforecast():
+    weeks = int(request.json["Weeks"])
+    if (weeks > 12):
+        return {
+            "failed" : "More weeks specified, the model can only accurately forecast upto a maximum of 12 weeks"
+        }
+    weekly_model = load_model('../Model/weekly_encounter_model_LSTM.h5')
+    # Export Pandas DataFrame to a CSV File
+    weeklyEncounter = pd.read_csv("../Datasets/Encounter/Cleaned/weeklyEncounter.csv")
+    #setting index as date
+    # weeklyEncounter['Date'] = pd.to_datetime(weeklyEncounter.Date,format='%Y-%m-%d')
+    weeklyEncounter.index = weeklyEncounter['Date']
+    weeklyEncounter.drop('Date', axis=1, inplace=True)
+    #Converting the dataframe to a numpy array
+    weekly_dataset = weeklyEncounter.values
+    #Scale the all of the data to be values between 0 and 1
+    scaler = MinMaxScaler(feature_range=(0, 1)) 
+    weekly_scaled_data = scaler.fit_transform(weekly_dataset)
+    # #Get the predicted scaled price
+    weekly_data_len = len(weekly_dataset)
+    #Test data set
+    weekly_loaded_test_data = weekly_scaled_data[weekly_data_len - weeks - 60: , : ]
+    #Create the x_test and y_test data sets
+    x_test = []
+    # y_test =  dataset[training_data_len : , : ]
+    #Get all of the rows from index 1603 to the rest and all of the columns (in this case it's only column 'Close'), so 2003 - 1603 = 400 rows of data
+    for i in range(60,len(weekly_loaded_test_data)):
+        x_test.append(weekly_loaded_test_data[i-60:i,0])
+    #Convert x_test to a numpy array 
+    x_test = np.array(x_test)
+    #Reshape the data into the shape accepted by the LSTM
+    x_test = np.reshape(x_test, (x_test.shape[0],x_test.shape[1],1))
+    #Getting the models predicted price values
+    pred_price = weekly_model.predict(x_test)
+    #undo the scaling 
+    pred_price = scaler.inverse_transform(pred_price)
+    prediction = pred_price. tolist()
+    prediction = json.dumps(prediction)
+    return prediction
+
+@app.route('/monthlyforecast', methods=['POST'])
+def monthlyforecast():
+    months = int(request.json["Months"])
+    if (months > 3):
+        return {
+            "failed" : "More months specified, the model can only accurately forecast upto a maximum of 3 months"
+        }
+    monthly_model = load_model('../Model/monthly_encounter_model_LSTM.h5')
+    # Export Pandas DataFrame to a CSV File
+    monthlyEncounter = pd.read_csv("../Datasets/Encounter/Cleaned/monthlyEncounter.csv")
+    #setting index as date
+    monthlyEncounter['Date'] = pd.to_datetime(monthlyEncounter.Date,format='%Y-%m-%d')
+    monthlyEncounter.index = monthlyEncounter['Date']
+    monthlyEncounter.drop('Date', axis=1, inplace=True)
+    #Converting the dataframe to a numpy array
+    monthly_dataset = monthlyEncounter.values
+    #Scale the all of the data to be values between 0 and 1
+    scaler = MinMaxScaler(feature_range=(0, 1)) 
+    monthly_scaled_data = scaler.fit_transform(monthly_dataset)
+    # #Get the predicted scaled price
+    monthly_data_len = len(monthly_dataset)
+    #Test data set
+    monthly_loaded_test_data = monthly_scaled_data[monthly_data_len - months - 60: , : ]
+    #Create the x_test and y_test data sets
+    x_test = []
+    # y_test =  dataset[training_data_len : , : ]
+    #Get all of the rows from index 1603 to the rest and all of the columns (in this case it's only column 'Close'), so 2003 - 1603 = 400 rows of data
+    for i in range(60,len(monthly_loaded_test_data)):
+        x_test.append(monthly_loaded_test_data[i-60:i,0])
+    #Convert x_test to a numpy array 
+    x_test = np.array(x_test)
+    #Reshape the data into the shape accepted by the LSTM
+    x_test = np.reshape(x_test, (x_test.shape[0],x_test.shape[1],1))
+    #Getting the models predicted price values
+    pred_price = monthly_model.predict(x_test)
+    #undo the scaling 
+    pred_price = scaler.inverse_transform(pred_price)
+    prediction = pred_price. tolist()
+    prediction = json.dumps(prediction)
+    return prediction
+
 if __name__ == '__main__':
     app.run(debug=True)
 
