@@ -11,9 +11,12 @@ import pandas as pd
 import calendar
 import time
 import numpy as np
+from datetime import datetime
+import dash_bootstrap_components as dbc
+import plotly.express as px
 
 
-app = DjangoDash('dashboard',serve_locally = False)
+app = DjangoDash('dashboard',serve_locally = False, add_bootstrap_links=True)
 """app.css.append_css({
     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 })"""
@@ -49,14 +52,75 @@ def onLoad_division_options():
 
 
 app.layout = html.Div([
-
-    # Page Header
-    html.Div([
+      html.Div([
         html.H1('Work Force Statistics')
     ]),
 
-    # Dropdown Grid
-    html.Div([
+   dbc.Row([
+    dbc.Col(
+        dbc.Card(
+            [
+
+                dbc.CardBody(
+                    [
+                        html.H4(id='card_title_1', children=['Card Title 1'], className='card-title'
+                            ),
+                        html.P(id='card_text_1', children=['Sample text.']),
+                    ]
+                )
+            ]
+        ),
+        md=3
+    ),
+    dbc.Col(
+        dbc.Card(
+            [
+
+                dbc.CardBody(
+                    [
+                        html.H4('Card Title 2', className='card-title'),
+                        html.P('Sample text.'),
+                    ]
+                ),
+            ]
+
+        ),
+        md=3
+    ),
+    dbc.Col(
+        dbc.Card(
+            [
+                dbc.CardBody(
+                    [
+                        html.H4('Card Title 3', className='card-title'),
+                        html.P('Sample text.'),
+                    ]
+                ),
+            ]
+
+        ),
+        md=3
+    ),
+    dbc.Col(
+        dbc.Card(
+            [
+                dbc.CardBody(
+                    [
+                        html.H4('Card Title 4', className='card-title'),
+                        html.P('Sample text.'),
+                    ]
+                ),
+            ]
+        ),
+        md=3
+    )
+]),
+
+   
+dbc.Row(
+    [
+        dbc.Col(
+            html.Div([
         html.Div([
             # Select Division Dropdown
             html.Div([
@@ -88,21 +152,55 @@ app.layout = html.Div([
     html.Div(className='six columns'),
     ], className='twleve columns'),
 
-    # Season Summary Table and Graph
-    html.Div([
+        ),
+        
+    ]
+),
+
+
+dbc.Row(
+    [
+        dbc.Col(
+            
+            html.Div([
         html.Div(id='output_color'),
          # summary table
         dcc.Graph(id='season-graph'),
-          ], className='six columns'),
+          ]
+        ),
+        ),
+        dbc.Col(
+            html.Div([
+        html.H4('Speciality'),
 
-    html.Div([
-        html.H4('Speciality')
-    ]),
+        dcc.Graph(id='graph_2'),
+                     ] 
+                     ),
+            
+        ),
+        
+    ]
+),
 
     
         
 ])
 
+"""app.layout = html.Div([content])
+
+content = html.Div(
+    [
+        html.H2('Analytics Dashboard Template', style=TEXT_STYLE),
+        html.Hr(),
+        content_first_row,
+        content_second_row,
+        content_third_row,
+        content_fourth_row
+    ],
+    style=CONTENT_STYLE
+)
+
+"""
 
 @app.callback(
     Output(component_id='season-selector', component_property='options'),
@@ -146,10 +244,16 @@ def comparison_graph(year,month,dropdown_color):
         return fig
     
     elif dropdown_color =='Patient':
-        df_graph_bar = df_graph['speciality'].value_counts().rename_axis('speciality').reset_index(name='Count')
+        df_graph['WeekDay'] = df_graph['encounter_datetime'].apply(lambda x: x.weekday())
+        replace_map = {'WeekDay': {0: 'Monday', 1: 'Tuesday', 2: 'Wednesday', 3: 'Thursday', 4: 'Friday', 5: 'Saturday'}}
+        df_graph.replace(replace_map, inplace=True)
+        
+        #df_graph['day']=df_graph['encounter_datetime'].dt.weekday
+        #day=calendar.day_name[:6]
+        df_graph_bar = df_graph['WeekDay'].value_counts().rename_axis('WeekDay').reset_index(name='Count')
     
         fig = go.Figure()
-        fig.add_trace(go.Bar(x=df_graph_bar['speciality'], y=df_graph_bar['Count'], name="chart"))
+        fig.add_trace(go.Bar(x=df_graph['WeekDay'], y=df_graph_bar['Count'], name="chart"))
         
         fig.update_layout(title_text=('Bar Chart'),xaxis_title='Speciality', yaxis_title='Number of Employees')
                         
