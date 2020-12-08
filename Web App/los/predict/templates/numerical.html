@@ -1,29 +1,51 @@
 {% extends "base/base1.html" %}
 {%load static %}
-{% block mainbar %}
 
+{% block controlbar %}
+<hr color="white">
+<p class="text-light">Hover over each preditions to view the actual predition made for that value. Incase you want to expand the scope of predition use, the textfield below. Currently the model predicts up to 60 days ahead</p>
+<form method="POST" class="text-light form-group">
+{% csrf_token %}
+<label for="input-request">Input days to project</label>
+<input class="form-control" id="input-request" type="number" max=60 name='days' min=1 value=7>
+<input type="submit" class="btn btn-block btn-primary" value="Predict">
+<form>
+{% endblock controlbar %}
+
+{% block mainbar %}
+<div class="border border-white shadow-lg" style="margin:10px">
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <a class="navbar-brand"> <i class="fas fa-calculator    "></i> Predictions</a>
+    <a class="navbar-brand"> <i class="fas fa-calculator    "></i> Daily</a>
     <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div id="my-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="{% url 'predict:predict-graphs' %}">Line Graph</a>
+                <a class="nav-link" href="{% url 'predict:predict-graphs' %}">Weekily Predictions</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Numerical Predictions <span class="sr-only">(current)</span></a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Daily Predictions <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Option</a>
+                <a class="nav-link" href="{% url 'predict:predict-month' %}" tabindex="-1" aria-disabled="true">Monthly Predictions</a>
             </li>
         </ul>
     </div>
 </nav>
 <br>
-<header class="text-center" >Numerical prediction</header>
-<br>
-
+<p style="margin-left:20px;">starts from tomorrow</p>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+{% for data in forecast %}
+    <div class="col" style="margin:10px;">
+    <div class="rounded bg-trans-white border shadow">
+        <h3 class="prediction-num bg-light"><em>{{data}}</em></h3>
+        <li class="{% cycle 'row1' 'row2' %} rounded-bottom lead text-center card-footer">{% cycle 'Day 1' 'Day 2' 'Day 3' 'Day 4' 'Day 5' 'Day 6' 'Day 7' 'Day 8' 'Day 9' 'Day 10' 'Day 11' 'Day 12' 'Day 13' 'Day 14' 'Day 15' 'Day 16' 'Day 17' 'Day 18' 'Day 19' 'Day 20' 'Day 21' 'Day 22' 'Day 23' 'Day 24' 'Day 25' 'Day 26' 'Day 27' 'Day 28' 'Day 29' 'Day 30' 'Day 31' 'Day 32' 'Day 33' 'Day 34' 'Day 35' 'Day 36' 'Day 37' 'Day 38' 'Day 39' 'Day 40' 'Day 41' 'Day 42' 'Day 43' 'Day 44' 'Day 45' 'Day 46' 'Day 47' 'Day 48' 'Day 49' 'Day 50' 'Day 51' 'Day 52' 'Day 53' 'Day 54' 'Day 55' 'Day 56' 'Day 57' 'Day 58' 'Day 59' 'Day 60'  %}</li>
+    </div>
+    </div>
+{% endfor %}
+</div>
+<br><br>
+</div>
 
 {% endblock mainbar %}

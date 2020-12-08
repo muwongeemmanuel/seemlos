@@ -1,0 +1,42 @@
+{% extends "base/base1.html" %}
+{% load static %}
+
+{% block controlbar %}
+<br>
+<p class="text-light text-justify">The model can predict up to 3 months accurately.</p>
+
+{% endblock controlbar %}
+
+{% block mainbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand"> <i class="fas fa-chart-line    "></i> Monthily</a>
+    <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="my-nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'predict:predict-graphs' %}">Weekily Predictions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'predict:predict-num' %}" tabindex="-1" aria-disabled="true">Daily Predictions</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link disabled" href="{% url 'predict:predict-month' %}" tabindex="-1" aria-disabled="true">Monthly Predictions <span class="sr-only">(current)</span> </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<p style="margin-left:20px;">starts from next month</p>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+{% for data in forecast %}
+    <div class="col" style="margin:10px;">
+    <div class="rounded bg-trans-white border shadow">
+        <h3 class="prediction-num"><em>{{data}}</em></h3>
+        <li class="{% cycle 'row1' 'row2' %} rounded-bottom lead text-center card-footer">{% cycle 'Month 1' 'Month 2' 'Month 3' %}</li>
+    </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock mainbar%}

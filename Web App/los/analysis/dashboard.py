@@ -38,14 +38,14 @@ def onLoad_division_options():
     )
     return division_options
 
-def onLoad_division_options():
+"""def onLoad_division_options():
     #Actions to perform upon initial page load
 
     division_options = (
         [{'label':year, 'value':year}
          for year in date_year]
     )
-    return division_options
+    return division_options"""
 
 
 app.layout = html.Div([

@@ -12,9 +12,9 @@
     <meta name='description' content="The Labour Optimization system helps you to analyze and make predictions about your workforce"></meta>
 
 </head>
-<body class="bg-mg2">
-    <nav class="navbar navbar-expand-sm navbar-light text-light bg-green">
-        <a class="navbar-brand text-light" href="#">Labour Optimization System</a>
+<body class="bg-mg-1">
+    <nav class="navbar navbar-expand-sm navbar-light text-light bg-green"><img src={% static 'resources/logo.jpg' %} class="rounded-circle border border-light img-center" height=45 width=45 alt="L.O.S Logo"> &nbsp &nbsp
+        <a class="navbar-brand text-light" href="#"> Labour Optimization System</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,19 +38,20 @@
     </nav>
 
     <!-- Making the sidepanel -->
-    <div class="row container">
+    <div class="row bg-trans-white" style="margin-left:1px;margin-right:10px;min-height:650px">
 
-        <section class="sidebar col bg-green padding h-100 rounded" style="margin:10px;">
-            <a class="btn padding text-light" href="{% url 'user-details' %}">User Details</a><br>
+        <section class="sidebar col bg-green sticky-top padding rounded-bottom" style="margin-top:0px;min-height:500px;max-height:550px">
+            <a class="btn padding btn-block btn-light" href="{% url 'user-details' %}">User Details</a>
             {% if request.user.is_superuser %}
-            <a class="btn padding text-light" href="{% url 'register' %}">Create Account</a><br>
+            <a class="btn btn-light padding btn-block" href="{% url 'register' %}">Create Account</a>
             {% endif %}
-            <a class="btn padding text-light" href="{% url 'contributors' %}">Project Contributors</a><br>
-            <br>
+            <a class="btn padding btn-block btn-light" href="{% url 'contributors' %}">Project Contributors</a>
+            {% block controlbar %}
+            {% endblock controlbar%}
 
-
-            <footer class='sidebar-footer'>
-                <p class="padding text-light"><i class="fa fa-copyright" aria-hidden="true"></i> 2020</p>
+<br>
+            <footer class='sidebar-footer' style="margin-bottom:10px;">
+                <p class="padding text-center text-light"><i class="fa fa-copyright" aria-hidden="true"></i> 2020</p>
             </footer>
 
         </section>
