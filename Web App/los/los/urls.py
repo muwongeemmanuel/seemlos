@@ -14,14 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django_plotly_dash.views import add_to_session
 from django.urls import path, include
 from .views import index, base, register, contributors, user, signout, home
+import analysis.barchat
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home1/', home, name="home1" ),
     path('analysis/', include('analysis.urls')),
     path('web/', include('web_interface.urls')),
+    path('django_plotly_dash/', include('django_plotly_dash.urls')),
     path('', index, name="index" ),
     path('register/', register, name="register" ),
     path('base/',base, name="base" ),

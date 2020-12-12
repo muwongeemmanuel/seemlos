@@ -13,9 +13,6 @@
                 <a class="nav-link disabled" href="">Graphical Analysis<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'analysis:line' %}" tabindex="-1" aria-disabled="true">Line Graph</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'analysis:numerical' %}" tabindex="-1" aria-disabled="true">Numerical Analysis</a>
             </li>
             
@@ -25,46 +22,26 @@
 <br>
 <header class="text-center">Analysis</header>
 <br>
-<section class="analysis-body row row-cols-1 row-cols-sm-2">
-    <div class="col mb-03">
-    <div class="card">
-        <img class="img-thumbnail" src="{% static 'resources\images\cubes.jpg' %}" alt="hbar">
+<div>
+</div>
+<section class="analysis-body">
+    <div class="border border-dark rounded" height=500 width=500>
+    
+    <div height=500>
+         {% load plotly_dash %}
+      {% block content %}
+     
+
+      {% plotly_app name="dashboard" ratio=.70 %}
+
+      {% endblock %}
+    </div>
+
+    {% plotly_footer %}
         <div class="card-body">
             <footer class="card-text"> <i class="fas fa-chart-bar    "></i> Bar Graph</footer>
         </div>
-    </div>
-    </div>
-
-    <div class="col mb-03">
-        <div class="card">
-            <img class="img-thumbnail" src="{% static 'resources\images\cubes.jpg' %}" alt="hbar">
-            <div class="card-body">
-                
-                <footer class="card-text"> <i class="fas fa-chart-pie    "></i> Pie Chart</footer>
-            </div>
-        </div>
-    </div>
-
-    <div class="col mb-03">
-        <div class="card">
-            <img class="img-thumbnail" src="{% static 'resources\images\cubes.jpg' %}" alt="hbar">
-            <div class="card-body">
-                <footer class="card-text"> Graph</footer>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col mb-03">
-        <div class="card">
-            <img class="img-thumbnail" src="{% static 'resources\images\cubes.jpg' %}" alt="hbar">
-                <div class="card-body">
-                    <footer class="card-text">Chart</footer>
-                </div>
-        </div>
-    </div>
-
-
-    
+    </div>    
 
 </section>
 {% endblock mainbar %}
