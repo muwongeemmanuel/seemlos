@@ -1,0 +1,27 @@
+{% extends "base/base1.html" %}
+{%load static %}
+{% block mainbar %}
+
+<header class="h1 text-center">Labour Optimization System</header>
+<br>
+<div class="row row-cols-1 row-cols-sm-2">
+
+<div class="col" align=center>
+<p class="bg-white rounded padding">L.O.S helps you to make very important Human Resource Management decisons like giving leaves, offering appreciation holidays, recruitment of new employees, addition of part time and contract workers etc... by;</p>
+<div class="card padding add-glow" style="max-width:250px; margin:10px;">
+<p class="lead ">Analysing Labor Workload</p>
+<p>Connect L.O.S to your database and let it analyse for your the data conerning the workload of your workers</p>
+</div>
+<div class="card padding add-glow" style="max-width:250px; margin:10px;">
+<p class="lead ">Predicting Labor Workload</p>
+<p>Query L.O.S with a set time range and let it predict the labor workload in that given time rage</p>
+</div>
+</div>
+
+<div class="col" style="">
+    <img src="{% static 'resources/woman-office.png' %}" class="rounded" width=400px height=500 alt="">
+</div>
+
+</div>
+
+{% endblock mainbar %}

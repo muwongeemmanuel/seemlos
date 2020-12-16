@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>L.O.S | Labour Optimization System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href={% static 'css/bootstrap.min.css' %} />
+    <link rel='stylesheet' href={% static 'css/all.min.css' %} />
+    <link rel='stylesheet' href={% static 'css/styler.css' %} />
+    <link rel="icon" type="image/png" href= 'static "favicon.png"'>
+    <meta name='description' content="The Labour Optimization system helps you to analyze and make predictions about your workforce"></meta>
+
+</head>
+<body class="bg-mg-1">
+    <nav class="navbar navbar-expand-sm navbar-light text-light bg-green"><img src={% static 'resources/logo.jpg' %} class="rounded-circle border border-light img-center" height=45 width=45 alt="L.O.S Logo"> &nbsp &nbsp
+        <a class="navbar-brand text-light" href="#"> Labour Optimization System</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link text-light" href="{% url 'home1' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'analysis:analysis' %}">Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'predict:predict-graphs' %}">Prediction</a>
+                </li>
+            </ul>
+            <a href="{% url 'logout'%}" class="my-2 btn btn-light my-lg-0">
+                Sign Out
+            </a>
+        </div>
+    </nav>
+
+    <!-- Making the sidepanel -->
+    <div class="row bg-trans-white" style="margin-left:1px;margin-right:10px;min-height:650px">
+
+        <section class="sidebar col bg-green sticky-top padding rounded-bottom" style="margin-top:0px;min-height:500px;max-height:550px">
+            <a class="btn padding btn-block btn-light" href="{% url 'user-details' %}">User Details</a>
+            {% if request.user.is_superuser %}
+            <a class="btn btn-light padding btn-block" href="{% url 'register' %}">Create Account</a>
+            {% endif %}
+            <a class="btn padding btn-block btn-light" href="{% url 'contributors' %}">Project Contributors</a>
+            {% block controlbar %}
+            {% endblock controlbar%}
+
+<br>
+            <footer class='sidebar-footer' style="margin-bottom:10px;">
+                <p class="padding text-center text-light"><i class="fa fa-copyright" aria-hidden="true"></i> 2020</p>
+            </footer>
+
+        </section>
+
+        <!--Making the space for the main panel-->
+        <section class="mainbar col">
+            {% block mainbar %}
+            {% endblock mainbar %}
+        </section>
+    </div>
+
+
+    <script type='text/javascript' src= {% static 'js/fontawesome/all.min.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/jquery-3.5.1.min.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/popper/popper.min.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/glm-ajax.js' %}></script>
+    <script type='text/javascript' src= {% static 'js/bootstrap.min.js' %}></script>
+</body>
+</html>
