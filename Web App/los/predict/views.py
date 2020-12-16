@@ -16,19 +16,34 @@ def index(request):
             for number in total:
                 labour= float(number)
                 show_digit = round(labour)
-                rounded_labour.append(show_digit)
+                #rounded_labour.append(show_digit)
+                show_data={
+                    "show":labour,
+                    "real":show_digit
+                }
+                #rounded_labour.append(show_data)
+                show_data={
+                    "show":labour,
+                    "real":show_digit
+                }
+                rounded_labour.append(show_data)
                 
-        return render(request, "index.html", {'forecast':rounded_labour})
+        return render(request, "week.html", {'forecast':rounded_labour,'show_data':show_data})
     r = requests.post('http://127.0.0.1:5000/weeklyforecast', json={"Weeks":"4"})
     rounded_labour=list()
+    show_data = dict()
     forecast=r.json()
     for total in forecast:
         for number in total:
             labour= float(number)
             show_digit = round(labour)
-            rounded_labour.append(show_digit)
+            show_data={
+                "show":labour,
+                "real":show_digit
+            }
+            rounded_labour.append(show_data)
             
-    return render(request, "index.html", {'forecast':rounded_labour})
+    return render(request, "week.html", {'forecast':rounded_labour, 'show_data':show_data})
 
 @login_required(login_url='/')
 def numerical(request):
@@ -41,31 +56,45 @@ def numerical(request):
         print(forecast)
         for total in forecast:
             for number in total:
-                labour= int(number)
+                labour=float(number)
                 show_digit = round(labour)
-                rounded_labour.append(show_digit)
-        return render(request, "numerical.html", {"forecast":rounded_labour})
+                #rounded_labour.append(show_digit)
+                show_data={
+                    "show":labour,
+                    "real":show_digit
+                }
+                rounded_labour.append(show_data)
+        return render(request, "day.html", {"forecast":rounded_labour, 'show_data':show_data})
     r = requests.post('http://127.0.0.1:5000/multidailyforecast', json={"Days":"7"})
     rounded_labour=list()
+    show_data= dict()
     forecast=r.json()
     print(forecast)
     for total in forecast:
         for number in total:
-            labour= int(number)
+            labour= float(number)
             show_digit = round(labour)
-            rounded_labour.append(show_digit)
-    return render(request, "numerical.html", {"forecast":rounded_labour})
-    #return render(request, "numerical.html", {"forecast":rounded_labour})
+            show_data={
+                "show":labour,
+                "real":show_digit
+            }
+            rounded_labour.append(show_data)
+    return render(request, "day.html", {"forecast":rounded_labour, 'show_data':show_data})
 
 @login_required(login_url='/')
 def monthly(request):
     r = requests.post('http://127.0.0.1:5000/monthlyforecast', json={"Months":"3"})
     rounded_labour=list()
+    show_data = dict()
     forecast=r.json()
     for total in forecast:
         for number in total:
             labour= float(number)
             show_digit = round(labour)
-            rounded_labour.append(show_digit)
+            show_data={
+                "show":labour,
+                "real":show_digit
+            }
+            rounded_labour.append(show_data)
             
-    return render(request, "month.html", {'forecast':rounded_labour})
+    return render(request, "month.html", {'forecast':rounded_labour, 'show_data':show_data})
