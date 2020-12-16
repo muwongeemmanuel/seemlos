@@ -14,7 +14,7 @@
 </head>
 <body class="bg-mg-1">
     <nav class="navbar navbar-expand-sm navbar-light text-light bg-green"><img src={% static 'resources/logo.jpg' %} class="rounded-circle border border-light img-center" height=45 width=45 alt="L.O.S Logo"> &nbsp &nbsp
-        <a class="navbar-brand text-light" href="#"> Labour Optimization System</a>
+        <a class="navbar-brand text-light"> Labour Optimization System</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
                     <a class="nav-link text-light" href="{% url 'analysis:analysis' %}">Analysis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="{% url 'predict:predict-graphs' %}">Prediction</a>
+                    <a class="nav-link text-light" href="{% url 'predict:predict-num' %}">Prediction</a>
                 </li>
             </ul>
             <a href="{% url 'logout'%}" class="my-2 btn btn-light my-lg-0">

@@ -16,10 +16,10 @@
     <div id="my-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'predict:predict-graphs' %}">Weekily Predictions</a>
+                <a class="nav-link" href="{% url 'predict:predict-num' %}" tabindex="-1" aria-disabled="true">Daily Predictions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'predict:predict-num' %}" tabindex="-1" aria-disabled="true">Daily Predictions</a>
+                <a class="nav-link" href="{% url 'predict:predict-graphs' %}">Weekily Predictions</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link disabled" href="{% url 'predict:predict-month' %}" tabindex="-1" aria-disabled="true">Monthly Predictions <span class="sr-only">(current)</span> </a>
@@ -32,8 +32,9 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
 {% for data in forecast %}
     <div class="col" style="margin:10px;">
-    <div class="rounded bg-trans-white border shadow">
-        <h3 class="prediction-num"><em>{{data}}</em></h3>
+    <div class="rounded bg-trans-white show_predict border shadow"  title="{{data.labour}}">
+        <h3 class="prediction-num"><em title={{data.show}}>{{data.real}}</em></h3>
+        <i class="text-center">{{data.show}}</i>
         <li class="{% cycle 'row1' 'row2' %} rounded-bottom lead text-center card-footer">{% cycle 'Month 1' 'Month 2' 'Month 3' %}</li>
     </div>
     </div>

@@ -146,8 +146,32 @@ th {
     max-height: 300px
 }
 
+.add-glow{
+    box-shadow: 0 0 50px rgb(208, 213, 192);
+}
+.add-glow1:hover{
+    box-shadow: 0 0 80px rgb(204, 211, 205);
+}
+
+.show_predict i{
+    color:white;
+    overflow-y: hidden;
+    margin-left: 300%;
+}
+
+.show_predict:hover i{
+    color: navy;
+    overflow: hidden;
+    margin-left: 0% ;
+}
+
+.set_img{
+    max-width: 500px;
+    max-height: 700px;
+}
+
 .bg-mg-1 {
-    background-image: url('fractal1.jpg');
+    background-image: url('fractals.jpg');
     background-position-x: center;
     background-repeat: no-repeat;
     /*color-adjust: rgba(253, 253, 253, 0.665);
