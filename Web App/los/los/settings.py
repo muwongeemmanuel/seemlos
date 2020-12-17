@@ -107,6 +107,12 @@ DATABASES = {
             'autocommit': True,
             'use_pure':True,
         },
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'django_api',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306'
     }
 }
 

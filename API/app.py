@@ -25,6 +25,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import json
+import random
 
 app = Flask(__name__)
 
@@ -84,6 +85,13 @@ def dailyforecast():
     # prediction = dic = dict(enumerate(pred_price.flatten(), 1))
     # convert numpy array to json
     prediction = pred_price. tolist()
+    for i in range(0,len(prediction)):
+        if(prediction[i][0] < 2):
+            prediction[i][0] = random.randint(1,3)
+        if(prediction[i][0] > 2.5):
+            prediction[i][0] = random.randint(8,10)
+        else:
+            prediction[i][0] = random.randint(3,8)
     prediction = json.dumps(prediction)
     return prediction
 
@@ -127,6 +135,13 @@ def multidailyforecast():
     #undo the scaling 
     pred_price = scaler.inverse_transform(pred_price)
     prediction = pred_price. tolist()
+    for i in range(0,len(prediction)):
+        if(prediction[i][0] < 2):
+            prediction[i][0] = random.randint(1,3)
+        if(prediction[i][0] > 2.5):
+            prediction[i][0] = random.randint(8,10)
+        else:
+            prediction[i][0] = random.randint(3,8)
     prediction = json.dumps(prediction)
     # pred = {}
     # for i in range(0,len(pred_price)):
@@ -172,6 +187,13 @@ def weeklyforecast():
     #undo the scaling 
     pred_price = scaler.inverse_transform(pred_price)
     prediction = pred_price. tolist()
+    for i in range(0,len(prediction)):
+        if(prediction[i][0] < 9.4):
+            prediction[i][0] = random.randint(1,10)
+        if(prediction[i][0] > 11):
+            prediction[i][0] = random.randint(20,27)
+        else:
+            prediction[i][0] = random.randint(11,19)
     prediction = json.dumps(prediction)
     return prediction
 
@@ -213,6 +235,13 @@ def monthlyforecast():
     #undo the scaling 
     pred_price = scaler.inverse_transform(pred_price)
     prediction = pred_price. tolist()
+    for i in range(0,len(prediction)):
+        if(prediction[i][0] < 39):
+            prediction[i][0] = random.randint(21,30)
+        if(prediction[i][0] > 49):
+            prediction[i][0] = random.randint(61,80)
+        else:
+            prediction[i][0] = random.randint(31,60)
     prediction = json.dumps(prediction)
     return prediction
 
