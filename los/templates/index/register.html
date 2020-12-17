@@ -1,0 +1,40 @@
+{% extends "base/base1.html" %}
+{% load static %}
+
+{% block mainbar %}
+    <h4 title="Labour Optimization System" class="text-center">L.O.S</h4>
+    <hr width=220>
+    {% if alert %}
+    <div class="alert container alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>{{alert}}</strong> 
+    </div>
+    
+    <script>
+      $(".alert").alert();
+    </script>
+    {% endif %}
+    <br>
+<div align=center>
+    <form method="POST" class="login_form bg-green text-light">
+        {% csrf_token%}
+        <label for="uname">Username</label>
+        <input class="form-control" id="uname" type="text" name="uname" required><br>
+        <label for="member">Positon</label>
+        <input class="form-control"  list="member-list" id="member" type="text" name="position" required><br>
+        <label for="email">Email</label>
+        <input class="form-control" id="email" type="mail" name="email" required><br>
+        <label for="password">Password</label>
+        <input class="form-control" id="password" type="password" name="password" required><br>
+        <button class='btn btn-primary btn-block'> Create User </button>
+        <datalist id="member-list">
+            <option value="Administrator">
+            <option value="Human resource">
+            <option value="Others">
+        </datalist>
+    </form>
+<br>
+<br>
+{% endblock mainbar%}
