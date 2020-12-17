@@ -5,7 +5,7 @@
     border-bottom-color: #2f4f4f;
 }
 .sidebar{
-    max-width: 230px;
+    max-width: 320px;
 }
 
 .sidebar-footer{
@@ -29,10 +29,10 @@
 
 .sticky {
     position: sticky;
-    top: 50px;
+    top: 20px;
 }
 .bg-green{
-    background-color: rgb(9, 65, 9);
+    background-color: rgb(15, 43, 15);
 }
 
 .padding {
@@ -146,19 +146,61 @@ th {
     max-height: 300px
 }
 
-.bg-mg-phone {
-    background-image: url('mobApp.png');
+.add-glow{
+    box-shadow: 0 0 50px rgb(208, 213, 192);
+}
+.add-glow1:hover{
+    box-shadow: 0 0 80px rgb(204, 211, 205);
+}
+
+.show_predict i{
+    color:white;
+    overflow-y: hidden;
+    margin-left: 300%;
+}
+
+.show_predict:hover i{
+    color: navy;
+    overflow: hidden;
+    margin-left: 0% ;
+}
+
+.set_img{
+    max-width: 500px;
+    max-height: 700px;
+}
+
+.bg-mg-1 {
+    background-image: url('fractals.jpg');
     background-position-x: center;
     background-repeat: no-repeat;
-    color-adjust: rgba(255, 255, 255, 1)
+    /*color-adjust: rgba(253, 253, 253, 0.665);
+    background-blend-mode: lighten;*/
+}
+
+.bg-trans-white{
+    background-color: rgba(255, 255, 255, 0.837);
 }
 
 .btn-width1 {
     width: 600px;
 }
-
+.row1{
+    background-color:  rgb(15, 43, 15);
+    color: white;
+}
+.row2{
+    background-color: #dbe9e9;
+    color: darkgreen;
+}
+.prediction-num{
+    font-size: 50px;
+    text-emphasis: 5px;
+    text-align: center;
+    color: rgba(0, 30, 128, 0.782);
+}
 .bg-mg2 {
-    background-image: url('stock.jpg');
+    background-image: url('logoback.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

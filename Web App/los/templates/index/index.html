@@ -3,18 +3,19 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>The Muchwezi</title>
+    <title>L.O.S | Login User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel='stylesheet' href={% static 'css/bootstrap.min.css' %} />
     <link rel='stylesheet' href={% static 'css/all.min.css' %} />
     <link rel='stylesheet' href={% static 'css/styler.css' %} />
+    <link rel="icon" type="image/png" href={% static 'favicon.png' %}>
     <meta name='The Muchwezi, Uganda Folklore, African Folklore, African mythology, East African mythology'></meta>
 
 </head>
-<body>
-    
-    <h1 class="text-center">Labour Optimization System</h1>
-    <h4 title="Labour Optimization System" class="text-center">L.O.S</h4>
+<body class="bg-mg2">
+<div class='container'>
+    <h1 class="text-center text-light">Labour Optimization System</h1>
+    <h4 title="Labour Optimization System" class="text-center text-light">L.O.S</h4>
     <hr width=220>
     {% if alert %}
     <div class="alert container alert-warning alert-dismissible fade show" role="alert">
@@ -28,9 +29,21 @@
       $(".alert").alert();
     </script>
     {% endif %}
-    <br>
-<div align=center>
-    <form method="POST" class="login_form bg-green text-light">
+    
+<div class="row row-cols-1 row-cols-sm-2">
+
+<div class="col"  align=center>
+<br><br>
+  <div class="rounded bg-white padding add-glow" style="max-width:400px;font-size:18px; padding:20px;" >
+  <p class='text-justify'>The Labour Optimization System (L.O.S) is what your organisation has been looking for. We are going to help you optimize the labour in your organisation by analysing and predicting labour workload from the data available.</p>
+  <p class='text-justify'>This will enable you to determine the time for leaves, additions and acquisition of freelancers which will  in the end boost your organization's monetary returns like never before.</p>
+  </div>
+</div>
+
+<div class="col" align=center>
+<img src={% static 'resources/logo.jpg' %} class="rounded-circle border border-light img-center" height=75 width=75 alt="L.O.S Logo"><br><br>
+<div>
+    <form method="POST" class=" login_form bg-green text-light">
         {% csrf_token%}
         <label for="uname">Username</label>
         <input class="form-control" id="uname" type="text" name="uname"><br>
@@ -39,7 +52,10 @@
         <button class='btn text-light navy-blue-bg btn-block'> Sign In </button>
     </form>
 </div>
-
+</div>
+</div>
+<br><br><br>
+</div>
 
     <script type='text/javascript' src= {% static 'js/fontawesome/all.min.js' %}></script>
     <script type='text/javascript' src= {% static 'js/jquery-3.5.1.min.js' %}></script>

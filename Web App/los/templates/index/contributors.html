@@ -1,10 +1,17 @@
 {% extends "base/base1.html" %}
 {%load static %}
+{% block controlbar %}
+<br>
+<p class="text-justify text-light">
+The Labour Optimisation System is work crafted by the hands of four briliant programmers using python. Each one added a big part to the system as each got their hands dirty at each stage of development.
+</p>
+{% endblock controlbar %}
+
 {% block mainbar %}
 <br>
 <header class="text-center">Project Contributors</header>
 <br>
-<section class="container">
+<section class="">
 <!-- Introducing Sunday-->
 <div class="card rounded">
 <div class="row row-cols-1 row-cols-sm-2">
@@ -12,8 +19,8 @@
         <img class="fit-image rounded-left" src="{% static 'resources/images/ofice.jpg'%}" alt="project-member">
     </div>
     <div class="card-body col">
-        <h5 class="card-title">Sunday</h5>
-        <p class="card-text text-justify">{% lorem %}</p>
+        <h5 class="card-title">Sunday Deogratius</h5>
+        <p class="card-text text-justify">He acted as the group leader and vision bearer of the group at each stage of production. He played a big part in ensuring quality and production of code at the perfect time. He did not stop there but also got his hands dirty in bid to ensure that everything was fine by coding as well.</p>
     </div>
 </div>
 </div>
@@ -22,24 +29,24 @@
 <div class="card rounded">
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="card-body col">
-            <h5 class="card-title">Erinah</h5>
-            <p class="card-text text-justify">{% lorem %}</p>
+            <h5 class="card-title">Erinah Kisembo</h5>
+            <p class="card-text text-justify">She is a talented developer with a magic hand when it comes to data analysis. She was involved throughout the entire development process and added tenacity and smart is the process of coming up with the system. </p>
         </div>
         <div class="col">
-            <img class="fit-image rounded-right" src="{% static 'resources/images/ofice.jpg'%}" alt="project-member">
+            <img class="fit-image float-right rounded-right" src="{% static 'resources/erinah.jpg'%}" alt="project-member">
         </div>
     </div>
 </div>
-
+<br>
 <!-- Introducing Emma-->
 <div class="card rounded">
     <div class="row row-cols-1 row-cols-sm-2">
         <div class="col">
-            <img class="fit-image rounded-left" src="{% static 'resources/images/ofice.jpg'%}" alt="project-member">
+            <img class="fit-image rounded-left" src="{% static 'resources/muwongeEmma.jpg'%}" alt="project-member">
         </div>
         <div class="card-body col">
-            <h5 class="card-title">Emmanuel</h5>
-            <p class="card-text text-justify">{% lorem %}</p>
+            <h5 class="card-title">Emmanuel Muwonge</h5>
+            <p class="card-text text-justify">He is a gifted python programmer whose desire and ability to up to on paper is just  out of this world. He fights to ensure that the assignments meet the required standards and that everyone brings what they have to the paper. This too, not forgeting his part in the entire development process.</p>
         </div>
     </div>
     </div>
@@ -48,11 +55,11 @@
     <div class="card rounded">
         <div class="row row-cols-1 row-cols-sm-2">
             <div class="card-body col">
-                <h5 class="card-title">Wilson</h5>
-                <p class="card-text text-justify">{% lorem %}</p>
+                <h5 class="card-title">Wilson Mutebi</h5>
+                <p class="card-text text-justify">He is aa charismatic fellow who does not want to just work around problems. He attempts to solve a problem straight from the beginning without trying to dodge questions about his work. His python programming skills added a part to the project.</p>
             </div>
             <div class="col">
-                <img class="fit-image rounded-right" src="{% static 'resources/images/ofice.jpg'%}" alt="project-member">
+                <img class="fit-image float-right rounded-right" src="{% static 'resources/mutsonera.jpg'%}" alt="project-member">
             </div>
         </div>
     </div>

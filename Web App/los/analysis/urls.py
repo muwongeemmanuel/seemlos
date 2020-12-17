@@ -1,5 +1,7 @@
 from django.urls import path, include
 from .views import index, line, numerical
+import analysis.barchat
+import analysis.dashboard
 
 app_name="analysis"
 urlpatterns =[

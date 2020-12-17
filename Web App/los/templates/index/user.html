@@ -1,27 +1,29 @@
 {% extends "base/base1.html" %}
 {%load static %}
+{% block controlbar %}
+<br>
+<p class="text-justify text-light">Currently, due to organisational restrictions of data more so concerning their employees, it has been seen very critical to only allow the main system administrators and a few other individuals to have access to this system. And only the administrators to add new users</p>
+{% endblock controlbar %}
 {% block mainbar %}
 <br>
-<header class='text-center'>User Details</header>
-<br>
 <div align=center>
-    <div class="card login_form">
+    <div class="card login_form shadow bg-green text-light">
         <div class="card-body">
-            <h5 class="card-title">Your Login Details</h5>
+            <h5 class="card-title"><em>Your Login Details</em></h5>
             <p class="card-text lead">{{request.user|title}}</p>
             <br>
-            <p class="text-brown">Your Fullname:</p>
+            <p class="text-light"><em>Your Fullname:</em></p>
             <p class="card-text lead">{{request.user.first_name|title}} {{request.user.last_name|title}} </p>
             <br>
-            <p class="text-brown">Your Registration Email:</p>
+            <p class="text-light"><em>Your Registration Email:</em></p>
             <p>{{request.user.email}}</p>
             <br>
-            <p class="text-brown">Date Joined:</p>
+            <p class="text-light"><em>Date Joined:</em></p>
             <p>{{request.user.date_joined}}</p>
-            <a class="btn btn-dark btn-block" href="{% url 'logout'%}">Sign Out</a>
+            <a class="btn btn-light btn-block" href="{% url 'logout'%}">Sign Out</a>
         </div>
         <p class="card-footer w-100">Your password is hashed for security purposes</p>
     </div>
 </div>
-
+<br><br>
 {% endblock mainbar %}
