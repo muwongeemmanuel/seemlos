@@ -8,7 +8,7 @@ cffi==1.14.3
 channels==2.4.0
 click==7.1.2
 constantly==15.1.0
-cryptography==3.2.1
+cryptography==3.3.2
 daphne==2.5.0
 dash==1.16.3
 dash-bootstrap-components==0.10.7
